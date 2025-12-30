@@ -1,41 +1,63 @@
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 import blogCdi from "@/assets/blog-cdi.jpg";
 
 const FeaturedPost = () => {
   return (
-    <section className="py-12 md:py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-2xl overflow-hidden card-shadow group">
-          <div className="grid lg:grid-cols-2">
+    <section className="py-24 lg:py-32">
+      <div className="container mx-auto px-6 lg:px-12">
+        {/* Section Label */}
+        <div className="flex items-center gap-4 mb-16">
+          <span className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
+            Featured Article
+          </span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        {/* Featured Card */}
+        <div className="group cursor-pointer">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Image */}
-            <div className="relative h-64 lg:h-auto overflow-hidden">
+            <div className="relative overflow-hidden rounded-sm aspect-[4/3]">
               <img
                 src={blogCdi}
-                alt="Debunking the Top 5 CDI Myths"
+                alt="Clinical Documentation Improvement"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 featured-overlay lg:hidden" />
+              <div className="absolute inset-0 bg-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Floating Category */}
+              <div className="absolute top-6 left-6">
+                <span className="px-4 py-2 bg-background/95 backdrop-blur-sm text-xs font-medium tracking-wider uppercase rounded-sm">
+                  Clinical Excellence
+                </span>
+              </div>
             </div>
 
             {/* Content */}
-            <div className="relative p-8 md:p-12 lg:p-16 bg-card lg:featured-overlay flex flex-col justify-center">
-              <span className="inline-block text-xs font-semibold tracking-wider uppercase text-accent mb-4">
-                Featured Blog
-              </span>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-foreground lg:text-primary-foreground leading-tight mb-4">
-                Debunking the Top 5 CDI Myths: How to Improve Patient Outcomes and Optimize Reimbursement
+            <div className="lg:pl-8">
+              {/* Meta */}
+              <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
+                <span>Dave Friedenson, MD</span>
+                <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
+                <span>December 2024</span>
+              </div>
+
+              {/* Title */}
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-foreground leading-tight mb-6 group-hover:text-muted-foreground transition-colors duration-300">
+                Debunking the Top 5 CDI Myths
               </h2>
-              <p className="text-muted-foreground lg:text-primary-foreground/80 leading-relaxed mb-6">
-                By Dave Friedenson, MD, FACEP, Chief Medical Officer — Clinical documentation is 
-                undeniably the foundation of quality patient care and accurate reimbursement. 
-                Yet persistent myths continue to hinder progress.
+
+              {/* Excerpt */}
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                How to improve patient outcomes and optimize reimbursement. Clinical documentation 
+                is undeniably the foundation of quality patient care and accurate reimbursement—yet 
+                persistent myths continue to hinder progress.
               </p>
-              <div>
-                <Button variant="hero" className="lg:bg-primary-foreground lg:text-primary group/btn">
-                  Read More
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                </Button>
+
+              {/* Read More */}
+              <div className="inline-flex items-center gap-3 text-foreground font-medium group/link">
+                <span className="premium-link">Read Article</span>
+                <ArrowUpRight className="w-5 h-5 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
               </div>
             </div>
           </div>

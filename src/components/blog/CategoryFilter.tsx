@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-
 interface CategoryFilterProps {
   categories: string[];
   activeCategory: string;
@@ -8,17 +6,19 @@ interface CategoryFilterProps {
 
 const CategoryFilter = ({ categories, activeCategory, onCategoryChange }: CategoryFilterProps) => {
   return (
-    <div className="flex flex-wrap gap-2 md:gap-3">
+    <div className="flex flex-wrap gap-3">
       {categories.map((category) => (
-        <Button
+        <button
           key={category}
-          variant={activeCategory === category ? "categoryActive" : "category"}
-          size="sm"
           onClick={() => onCategoryChange(category)}
-          className="transition-all duration-300"
+          className={`px-5 py-2.5 text-sm font-medium rounded-sm transition-all duration-300 ${
+            activeCategory === category
+              ? "bg-foreground text-background"
+              : "bg-secondary text-muted-foreground hover:bg-secondary/80 hover:text-foreground"
+          }`}
         >
           {category}
-        </Button>
+        </button>
       ))}
     </div>
   );

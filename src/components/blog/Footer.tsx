@@ -1,26 +1,24 @@
 import { Linkedin, Twitter, Youtube } from "lucide-react";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   const footerLinks = {
     solutions: [
-      { label: "Revenue Cycle Management", href: "#" },
-      { label: "Clinical Documentation", href: "#" },
-      { label: "Payer Solutions", href: "#" },
-      { label: "Real-World Data", href: "#" },
+      { label: "Revenue Cycle", href: "#" },
+      { label: "Clinical Services", href: "#" },
+      { label: "Data Analytics", href: "#" },
+      { label: "Technology", href: "#" },
     ],
     company: [
       { label: "About Us", href: "#" },
+      { label: "Leadership", href: "#" },
       { label: "Careers", href: "#" },
-      { label: "Contact", href: "#" },
-      { label: "Press", href: "#" },
+      { label: "Newsroom", href: "#" },
     ],
     resources: [
       { label: "Blog", href: "#" },
       { label: "Case Studies", href: "#" },
-      { label: "Whitepapers", href: "#" },
-      { label: "Events", href: "#" },
+      { label: "Webinars", href: "#" },
+      { label: "Contact", href: "#" },
     ],
   };
 
@@ -31,21 +29,28 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-foreground text-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-          {/* Brand Column */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-serif text-xl font-bold">Ω</span>
+    <footer className="bg-background border-t border-border">
+      {/* Main Footer */}
+      <div className="container mx-auto px-6 lg:px-12 py-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12">
+          {/* Brand */}
+          <div className="col-span-2 lg:col-span-2">
+            <a href="#" className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-foreground rounded-sm flex items-center justify-center">
+                <span className="text-background font-serif text-xl font-bold">Ω</span>
               </div>
-              <span className="font-serif text-lg font-semibold">
-                Omega Healthcare
-              </span>
-            </div>
-            <p className="text-sm text-background/70 leading-relaxed mb-6">
-              Technology-led, clinically enabled solutions to help healthcare organizations thrive.
+              <div>
+                <span className="font-serif text-xl font-semibold text-foreground tracking-tight">
+                  Omega
+                </span>
+                <span className="text-xs text-muted-foreground block -mt-1 tracking-widest uppercase">
+                  Healthcare
+                </span>
+              </div>
+            </a>
+            <p className="text-muted-foreground leading-relaxed max-w-sm mb-8">
+              Transforming healthcare through intelligent solutions, 
+              data-driven insights, and clinical excellence.
             </p>
             {/* Social Links */}
             <div className="flex gap-4">
@@ -53,8 +58,8 @@ const Footer = () => {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 rounded-full bg-background/10 hover:bg-primary flex items-center justify-center transition-colors duration-300"
                   aria-label={social.label}
+                  className="w-10 h-10 rounded-sm bg-secondary flex items-center justify-center text-muted-foreground hover:bg-foreground hover:text-background transition-all duration-300"
                 >
                   <social.icon size={18} />
                 </a>
@@ -62,17 +67,17 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Solutions */}
+          {/* Links */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider mb-4">
+            <h4 className="font-medium text-foreground mb-6 text-sm tracking-wider uppercase">
               Solutions
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {footerLinks.solutions.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-background/70 hover:text-background transition-colors duration-200"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -81,17 +86,16 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider mb-4">
+            <h4 className="font-medium text-foreground mb-6 text-sm tracking-wider uppercase">
               Company
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-background/70 hover:text-background transition-colors duration-200"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -100,17 +104,16 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Resources */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider mb-4">
+            <h4 className="font-medium text-foreground mb-6 text-sm tracking-wider uppercase">
               Resources
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-background/70 hover:text-background transition-colors duration-200"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
                   >
                     {link.label}
                   </a>
@@ -119,19 +122,20 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-background/60">
-            © {currentYear} Omega Healthcare. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-sm text-background/60 hover:text-background transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-sm text-background/60 hover:text-background transition-colors">
-              Terms of Service
-            </a>
+      {/* Bottom Bar */}
+      <div className="border-t border-border">
+        <div className="container mx-auto px-6 lg:px-12 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-muted-foreground">
+              © 2024 Omega Healthcare. All rights reserved.
+            </p>
+            <div className="flex items-center gap-8 text-sm text-muted-foreground">
+              <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-foreground transition-colors">Cookie Policy</a>
+            </div>
           </div>
         </div>
       </div>

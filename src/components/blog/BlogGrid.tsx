@@ -1,122 +1,97 @@
 import { useState } from "react";
 import BlogCard from "./BlogCard";
 import CategoryFilter from "./CategoryFilter";
-
-// Import images
 import blogClinicalTrials from "@/assets/blog-clinical-trials.jpg";
 import blogOncology from "@/assets/blog-oncology.jpg";
 import blogRcm from "@/assets/blog-rcm.jpg";
 import blogAiCyber from "@/assets/blog-ai-cyber.jpg";
 import blogPayer from "@/assets/blog-payer.jpg";
-import blogCdi from "@/assets/blog-cdi.jpg";
+
+const categories = ["All", "Clinical", "Technology", "Finance", "Operations"];
 
 const blogPosts = [
   {
-    id: 1,
-    title: "Improving the Success of Clinical Trials with Effective RWD Management",
-    excerpt: "Optimizing the efficacy of clinical trials via proficient management of real-world data, ensuring optimal insights for informed decision-making.",
-    author: "Heather Grey",
-    category: "Clinical Trials",
+    title: "The Future of Clinical Trials: AI-Driven Patient Matching",
+    excerpt: "Exploring how artificial intelligence is revolutionizing patient recruitment and retention in clinical research.",
+    author: "Sarah Chen, PhD",
+    category: "Clinical",
     image: blogClinicalTrials,
-    readTime: "6 min read",
+    date: "Dec 2024",
   },
   {
-    id: 2,
-    title: "Advancing Oncology Research through Real-World Data Curation",
-    excerpt: "A collaborative effort presented at Memorial Sloan Kettering highlighting the importance of data curation in cancer research.",
-    author: "Heather Grey",
-    category: "Research",
+    title: "Precision Oncology: Navigating the New Frontier",
+    excerpt: "Understanding the latest developments in targeted therapies and personalized cancer treatment approaches.",
+    author: "Michael Roberts, MD",
+    category: "Clinical",
     image: blogOncology,
-    readTime: "8 min read",
+    date: "Nov 2024",
   },
   {
-    id: 3,
-    title: "RCM Trends to Watch in 2025: What Providers Need to Know",
-    excerpt: "The financial landscape for healthcare providers continues to evolve — and not necessarily in favorable directions.",
-    author: "Anurag Mehta",
-    category: "RCM",
+    title: "Revenue Cycle Optimization in Value-Based Care",
+    excerpt: "Strategies for healthcare organizations transitioning from fee-for-service to value-based payment models.",
+    author: "Jennifer Martinez",
+    category: "Finance",
     image: blogRcm,
-    readTime: "5 min read",
+    date: "Nov 2024",
   },
   {
-    id: 4,
-    title: "2025 Payer Trends: Navigating Complexity, Compliance, and AI Disruption",
-    excerpt: "For payers, 2024 was a challenging year. Sweeping policy changes squeezed reimbursement, and rising costs demanded innovation.",
-    author: "Chris Rigsby",
-    category: "Payer Solutions",
-    image: blogPayer,
-    readTime: "7 min read",
-  },
-  {
-    id: 5,
-    title: "Revolutionizing Healthcare: Insights from HLTH 2024 on AI and Cybersecurity",
-    excerpt: "The HLTH 2024 conference in Las Vegas brought together healthcare leaders to discuss the future of AI in medicine.",
-    author: "Vijayashree Natarajan",
+    title: "AI & Cybersecurity: Protecting Healthcare Data",
+    excerpt: "Best practices for implementing robust security measures while leveraging AI capabilities.",
+    author: "David Kim",
     category: "Technology",
     image: blogAiCyber,
-    readTime: "6 min read",
+    date: "Oct 2024",
   },
   {
-    id: 6,
-    title: "Denials Are Inevitable, but Actionable: Best Practices for Denial Management",
-    excerpt: "Proactive approaches can help address the source of nearly 50 percent of denials through front-end improvements.",
-    author: "Julius Raj Stephen",
-    category: "RCM",
-    image: blogCdi,
-    readTime: "5 min read",
+    title: "Payer-Provider Alignment: Building Sustainable Partnerships",
+    excerpt: "How collaborative relationships between payers and providers improve outcomes and reduce costs.",
+    author: "Lisa Thompson",
+    category: "Operations",
+    image: blogPayer,
+    date: "Oct 2024",
   },
 ];
-
-const categories = ["All", "Clinical Trials", "Research", "RCM", "Payer Solutions", "Technology"];
 
 const BlogGrid = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredPosts = activeCategory === "All" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === activeCategory);
+  const filteredPosts = activeCategory === "All"
+    ? blogPosts
+    : blogPosts.filter((post) => post.category === activeCategory);
 
   return (
-    <section className="py-12 md:py-20 bg-secondary/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+    <section className="py-24 lg:py-32 bg-secondary/30">
+      <div className="container mx-auto px-6 lg:px-12">
+        {/* Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
           <div>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-2">
+            <span className="text-sm font-medium tracking-widest uppercase text-muted-foreground mb-4 block">
               Latest Insights
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif font-semibold text-foreground">
+              Explore Our Articles
             </h2>
-            <p className="text-muted-foreground">
-              Stay updated with our latest healthcare articles and industry analysis.
-            </p>
           </div>
-          <CategoryFilter 
+          <CategoryFilter
             categories={categories}
             activeCategory={activeCategory}
             onCategoryChange={setActiveCategory}
           />
         </div>
 
-        {/* Blog Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
           {filteredPosts.map((post, index) => (
-            <div 
-              key={post.id}
-              className="opacity-0 animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}
-            >
-              <BlogCard {...post} />
-            </div>
+            <BlogCard key={post.title} {...post} index={index} />
           ))}
         </div>
 
-        {/* No Results */}
-        {filteredPosts.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-muted-foreground text-lg">
-              No articles found in this category.
-            </p>
-          </div>
-        )}
+        {/* Load More */}
+        <div className="text-center mt-20">
+          <button className="px-8 py-4 border border-foreground text-foreground text-sm font-medium tracking-wide hover:bg-foreground hover:text-background transition-all duration-300 rounded-sm">
+            View All Articles
+          </button>
+        </div>
       </div>
     </section>
   );
