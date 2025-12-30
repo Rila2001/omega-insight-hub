@@ -1,39 +1,42 @@
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "Blog", href: "#" },
+    { label: "Insights", href: "#" },
     { label: "Solutions", href: "#" },
     { label: "About", href: "#" },
     { label: "Careers", href: "#" },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="flex items-center justify-between h-20 border-b border-border">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-10 h-10 hero-gradient rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-serif text-xl font-bold">Ω</span>
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 bg-foreground rounded-sm flex items-center justify-center transition-transform group-hover:scale-105">
+              <span className="text-background font-serif text-xl font-bold">Ω</span>
             </div>
-            <span className="font-serif text-xl font-semibold text-foreground hidden sm:block">
-              Omega Healthcare
-            </span>
+            <div className="hidden sm:block">
+              <span className="font-serif text-xl font-semibold text-foreground tracking-tight">
+                Omega
+              </span>
+              <span className="text-xs text-muted-foreground block -mt-1 tracking-widest uppercase">
+                Healthcare
+              </span>
+            </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-12">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 premium-link"
               >
                 {link.label}
               </a>
@@ -41,10 +44,14 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button variant="outline" size="sm">
-              Contact Us
-            </Button>
+          <div className="hidden md:flex items-center">
+            <a
+              href="#"
+              className="group flex items-center gap-2 px-6 py-3 bg-foreground text-background text-sm font-medium rounded-sm hover:bg-foreground/90 transition-all duration-300"
+            >
+              Get in Touch
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -61,19 +68,24 @@ const Header = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="lg:hidden bg-background border-b border-border animate-fade-in">
-          <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
+          <nav className="container mx-auto px-6 py-8 flex flex-col gap-6">
+            {navLinks.map((link, index) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="text-2xl font-serif text-foreground hover:text-muted-foreground transition-colors"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 {link.label}
               </a>
             ))}
-            <Button variant="default" className="mt-2">
-              Contact Us
-            </Button>
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background text-sm font-medium rounded-sm w-fit mt-4"
+            >
+              Get in Touch
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
           </nav>
         </div>
       )}
